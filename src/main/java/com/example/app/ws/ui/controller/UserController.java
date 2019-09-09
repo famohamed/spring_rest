@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.app.ws.exceptions.UserClassException;
 import com.example.app.ws.ui.model.req.*;
 import com.example.app.ws.ui.model.resp.*;
 
@@ -30,8 +31,9 @@ public class UserController {
 	public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
 		UserRest lUserRest = new UserRest();
 		
-		String firstName = null;
-		int firstNameLen = firstName.length();
+		//String firstName = null;
+		//int firstNameLen = firstName.length();
+		if (true) throw new UserClassException("A user exception generated");
 		
 		if (users == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
