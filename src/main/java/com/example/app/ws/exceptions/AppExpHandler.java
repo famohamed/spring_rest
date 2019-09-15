@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -50,6 +51,7 @@ public class AppExpHandler extends ResponseEntityExceptionHandler  {
 		
 		String errorMsgDesc;
 		ErrorMessage errorMessage;
+		HttpStatus lHttpStatus;
 		
 		errorMsgDesc = ex.getLocalizedMessage();
 		
@@ -57,7 +59,9 @@ public class AppExpHandler extends ResponseEntityExceptionHandler  {
 		
 		errorMessage = new ErrorMessage(new Date(), errorMsgDesc);
 		
-		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		lHttpStatus = HttpStatus.valueOf(526);
+		
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), lHttpStatus);
 	}
 	
 }
